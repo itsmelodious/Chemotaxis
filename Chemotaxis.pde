@@ -18,11 +18,12 @@
  	{
  		b[i].move();
  		b[i].show();
+ 		b[i].food();
  	}   
  }  
  class Bacteria    
  {     
- 	int x, y, r, g, b, s;
+ 	int x, y, r, g, b, s, foodR, foodG, foodB;
  	Bacteria(int bx, int by)
  	{
  		x = bx;
@@ -31,6 +32,9 @@
  		g = (int)(Math.random()*128)+127;
  		b = (int)(Math.random()*128)+127;
  		s = (int)(Math.random()*10)+5;
+ 		foodR = (int)(Math.random()*128)+127;
+ 		foodG = (int)(Math.random()*128)+127;
+ 		foodB = (int)(Math.random()*128)+127;
  	}
  	void move()
  	{
@@ -59,6 +63,9 @@
  		{
  			x = (int)(Math.random()*500);
  			y = (int)(Math.random()*500);
+ 			foodR = (int)(Math.random()*128)+127;
+ 			foodG = (int)(Math.random()*128)+127;
+ 			foodB = (int)(Math.random()*128)+127;
  		}
  	}
  	void show()
@@ -67,5 +74,11 @@
  		stroke(0);
  		fill(r, g, b);
  		ellipse(x, y, s, s);
+ 	}
+ 	void food()
+ 	{
+ 		noStroke();
+ 		fill(foodR, foodG, foodB);
+ 		rect(mouseX - (s + 20)/2, mouseY - (s + 20)/2, s + 20, s + 20);
  	}
  }    
