@@ -3,7 +3,7 @@
  {      
  	size(500, 500);
  	background(160, 207, 195); 
- 	b = new Bacteria[30];
+ 	b = new Bacteria[50];
  	for (int i = 0; i < b.length; i++)
  	{
  		int myX = (int)(Math.random()*500);
@@ -38,6 +38,7 @@
  	}
  	void move()
  	{
+ 		boolean followMouse = true;
  		x = x + (int)(Math.random()*3)-1;
  		y = y + (int)(Math.random()*3)-1;
  		// continuous screen
@@ -50,19 +51,37 @@
  		else if (y > 500)
  			y = 0;
  		// follow mouse
- 		if (mouseX < x)
- 			x = x + (int)(Math.random()*3)-2;
- 		else if(mouseX > x)
- 			x = x + (int)(Math.random()*3);
- 		if (mouseY < y)
- 			y = y + (int)(Math.random()*3)-2;
- 		else if(mouseY > y)
- 			y = y + (int)(Math.random()*3);
+ 		if (keyPressed)
+ 		{
+			if (key == 'f')
+ 			{
+ 				followMouse = false;
+ 			}
+ 			else
+ 			{
+ 				followMouse = true;
+ 			}
+ 		}
+ 		if (followMouse == true)
+ 		{
+	 		if (mouseX < x)
+	 			x = x + (int)(Math.random()*3)-2;
+	 		else if(mouseX > x)
+	 			x = x + (int)(Math.random()*3);
+	 		if (mouseY < y)
+	 			y = y + (int)(Math.random()*3)-2;
+	 		else if(mouseY > y)
+	 			y = y + (int)(Math.random()*3);
+ 		}
  		// new location
  		if (mousePressed == true)
- 		{
+ 		{ 
  			x = (int)(Math.random()*500);
  			y = (int)(Math.random()*500);
+	 		r = (int)(Math.random()*128)+127;
+	 		g = (int)(Math.random()*128)+127;
+	 		b = (int)(Math.random()*128)+127;
+	 		s = (int)(Math.random()*10)+5;
  			foodR = (int)(Math.random()*128)+127;
  			foodG = (int)(Math.random()*128)+127;
  			foodB = (int)(Math.random()*128)+127;
